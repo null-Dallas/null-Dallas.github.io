@@ -964,6 +964,192 @@
                 padding: 22px 18px;
             }
         }
+
+        /* ---- Events section: embed framed to match the site ---- */
+        #events {
+            position: relative;
+            background:
+                radial-gradient(60% 80% at 85% 20%, rgba(210, 255, 2, 0.06), transparent 70%),
+                var(--bg);
+        }
+
+        .events-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .events-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            margin-bottom: 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(210, 255, 2, 0.35);
+            background: rgba(210, 255, 2, 0.06);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 0 0 rgba(210, 255, 2, 0.6);
+            animation: live-pulse 2s infinite;
+        }
+
+        @keyframes live-pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(210, 255, 2, 0.55); }
+            70%  { box-shadow: 0 0 0 9px rgba(210, 255, 2, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(210, 255, 2, 0); }
+        }
+
+        .events-info h3 {
+            font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+        }
+
+        .events-info > p {
+            color: rgba(255, 255, 255, 0.78);
+            margin-bottom: 22px;
+            max-width: 520px;
+        }
+
+        .events-points {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .events-points li {
+            position: relative;
+            padding-left: 26px;
+            color: var(--text);
+        }
+
+        .events-points li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+            font-weight: 800;
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        }
+
+        .events-info .cta-row { margin-bottom: 0; }
+
+        .event-embed {
+            position: relative;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)), var(--bg-soft);
+            box-shadow: 0 24px 60px var(--shadow), 0 0 0 1px rgba(210, 255, 2, 0.04);
+            overflow: hidden;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .event-embed::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .event-embed:hover {
+            border-color: rgba(210, 255, 2, 0.4);
+            box-shadow: 0 24px 60px var(--shadow), 0 0 40px rgba(210, 255, 2, 0.1);
+        }
+
+        .event-embed-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.025);
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+        }
+
+        .embed-dots { display: inline-flex; gap: 6px; }
+        .embed-dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.16); }
+        .embed-dots i:first-child { background: var(--primary); }
+
+        .embed-title {
+            flex: 1;
+            min-width: 0;
+            color: rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .embed-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .event-embed-body {
+            position: relative;
+            padding: 16px;
+            min-height: 480px;
+        }
+
+        .embed-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        .event-iframe {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 450px;
+            border: 0;
+            border-radius: 12px;
+            background: #ffffff;
+            color-scheme: light;
+        }
+
+        @media (max-width: 900px) {
+            .events-layout { grid-template-columns: 1fr; gap: 32px; }
+            .events-info > p { max-width: none; }
+        }
+
+        @media (max-width: 640px) {
+            .event-embed-body { padding: 10px; min-height: 0; }
+            .event-iframe { height: 520px; }
+            .embed-status { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .live-dot { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -1024,16 +1210,51 @@
 
         <section id="events">
             <div class="container">
-                <iframe
-                  src="https://luma.com/embed/event/evt-ZaWjwhJJ9Pn9knu/simple"
-                  width="600"
-                  height="450"
-                  frameborder="0"
-                  style="border: 1px solid #bfcbda88; border-radius: 4px;"
-                  allow="fullscreen; payment"
-                  aria-hidden="false"
-                  tabindex="0"
-                ></iframe>
+                <div class="section-head">
+                    <h2>Upcoming Events</h2>
+                    <p>Talks, workshops, and hands-on sessions for the Dallas cybersecurity community. Grab a seat and show up with purpose.</p>
+                </div>
+
+                <div class="events-layout">
+                    <div class="events-info">
+                        <span class="events-eyebrow"><span class="live-dot" aria-hidden="true"></span>Next meetup</span>
+                        <h3>Learn, build, and connect in person.</h3>
+                        <p>
+                            Every null Dallas session is built around real technical conversation: practical demos,
+                            community talks, and people who care more about knowledge than titles.
+                            Register in the panel, or jump into Discord to see what's coming next.
+                        </p>
+
+                        <ul class="events-points">
+                            <li>Open to all skill levels</li>
+                            <li>Students and industry practitioners welcome</li>
+                            <li>Want to speak? Send us your talk</li>
+                        </ul>
+
+                        <div class="cta-row">
+                            <a class="btn btn-primary" href="https://discord.gg/ARbJM4Usbz" target="_blank" rel="noreferrer">Join our Discord</a>
+                            <a class="btn btn-secondary" href="https://sessionize.com/null-dallas9421/" target="_blank" rel="noreferrer">Submit a Talk</a>
+                        </div>
+                    </div>
+
+                    <div class="event-embed">
+                        <div class="event-embed-bar">
+                            <span class="embed-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="embed-title">~/null-dallas/next-event</span>
+                            <span class="embed-status"><span class="live-dot" aria-hidden="true"></span>live</span>
+                        </div>
+                        <div class="event-embed-body">
+                            <p class="embed-loading">Loading event details&hellip;</p>
+                            <iframe
+                                class="event-iframe"
+                                src="https://luma.com/embed/event/evt-ZaWjwhJJ9Pn9knu/simple"
+                                title="null Dallas upcoming event registration"
+                                loading="lazy"
+                                allow="fullscreen; payment"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

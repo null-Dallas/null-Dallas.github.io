@@ -1147,6 +1147,21 @@
             .embed-status { display: none; }
         }
 
+
+        /* ---- Kickoff speakers ---- */
+        .speakers-block { margin-top: 72px; padding-top: 56px; border-top: 1px solid var(--line); }
+        .speakers-head { text-align: center; margin-bottom: 36px; }
+        .speakers-head h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.04em; margin-bottom: 14px; }
+        .speakers-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 0.85rem; }
+        .speakers-meta span { padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(210, 255, 2, 0.35); background: rgba(210, 255, 2, 0.06); color: var(--primary); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+        .speakers-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; max-width: 920px; margin: 0 auto; }
+        .speaker-card { position: relative; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--bg-soft); box-shadow: 0 24px 60px var(--shadow); transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+        .speaker-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); z-index: 2; }
+        .speaker-card:hover { transform: translateY(-4px); border-color: rgba(210, 255, 2, 0.4); box-shadow: 0 24px 60px var(--shadow), 0 0 40px rgba(210, 255, 2, 0.1); }
+        .speaker-card img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+        @media (max-width: 700px) { .speakers-grid { grid-template-columns: 1fr; } .speakers-block { margin-top: 56px; padding-top: 44px; } }
+        @media (prefers-reduced-motion: reduce) { .speaker-card { transition: none; } .speaker-card:hover { transform: none; } }
+
         @media (prefers-reduced-motion: reduce) {
             .live-dot { animation: none; }
         }
@@ -1253,6 +1268,25 @@
                                 allow="fullscreen; payment"
                             ></iframe>
                         </div>
+                    </div>
+                </div>
+
+                <div class="speakers-block" id="speakers">
+                    <div class="speakers-head">
+                        <h3>Kickoff Event Speakers</h3>
+                        <div class="speakers-meta">
+                            <span>Oct 22, 2026</span>
+                            <span>7pm CT</span>
+                            <span>JSOM Davidson Auditorium</span>
+                        </div>
+                    </div>
+                    <div class="speakers-grid">
+                        <figure class="speaker-card">
+                            <img src="./speakers/sai-molige.jpg" alt="Sai Molige, Sr. Manager, Threat Hunting at Forescout Technologies. Talk: The Sandbox wasn't the Boundary. 7pm CT, Oct 22, 2026, JSOM Davidson Auditorium." loading="lazy" />
+                        </figure>
+                        <figure class="speaker-card">
+                            <img src="./speakers/michelle-foley.jpg" alt="Michelle Foley, Sr. Vice President at Truist. Talk: Hacking Corporate Politics: Survival in the Trenches. 7pm CT, Oct 22, 2026, JSOM Davidson Auditorium." loading="lazy" />
+                        </figure>
                     </div>
                 </div>
             </div>

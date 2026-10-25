@@ -1148,8 +1148,26 @@
         }
 
 
-        /* ---- Kickoff speakers ---- */
-        .speakers-block { margin-top: 72px; padding-top: 56px; border-top: 1px solid var(--line); }
+        /* ---- Upcoming (empty state) + Past events ---- */
+        .events-empty { border: 1px dashed rgba(210, 255, 2, 0.35); border-radius: 20px; padding: 36px 32px; background: rgba(210, 255, 2, 0.03); }
+        .events-empty h3 { font-size: clamp(1.6rem, 2.4vw, 2.3rem); line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 14px; }
+        .events-empty > p { color: rgba(255, 255, 255, 0.78); max-width: 640px; margin-bottom: 22px; }
+        .events-empty .events-points { margin-bottom: 26px; }
+        .events-empty .cta-row { margin-bottom: 0; }
+        .past-events { margin-top: 80px; padding-top: 64px; border-top: 1px solid var(--line); }
+        .past-events .section-head h2 { font-size: clamp(1.8rem, 2.6vw, 2.5rem); }
+        .events-eyebrow.is-past { border-color: rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.04); color: rgba(255, 255, 255, 0.75); }
+        .embed-status.is-past { color: rgba(255, 255, 255, 0.55); }
+        .past-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; font-size: 0.85rem; }
+        .past-meta span { padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(210, 255, 2, 0.35); background: rgba(210, 255, 2, 0.06); color: var(--primary); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+        .past-talks { list-style: none; display: grid; gap: 10px; margin-bottom: 28px; }
+        .past-talks li { position: relative; padding-left: 26px; }
+        .past-talks li::before { content: ">"; position: absolute; left: 0; top: 0; color: var(--primary); font-weight: 800; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+        .past-talks strong { color: var(--primary); font-weight: 700; }
+        @media (max-width: 640px) { .events-empty { padding: 26px 20px; } .past-events { margin-top: 56px; padding-top: 44px; } }
+
+        /* ---- Speaker wall ---- */
+        .speakers-group + .speakers-group { margin-top: 72px; }
         .speakers-head { text-align: center; margin-bottom: 36px; }
         .speakers-head h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.04em; margin-bottom: 14px; }
         .speakers-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 0.85rem; }
@@ -1159,7 +1177,7 @@
         .speaker-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); z-index: 2; }
         .speaker-card:hover { transform: translateY(-4px); border-color: rgba(210, 255, 2, 0.4); box-shadow: 0 24px 60px var(--shadow), 0 0 40px rgba(210, 255, 2, 0.1); }
         .speaker-card img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-        @media (max-width: 700px) { .speakers-grid { grid-template-columns: 1fr; } .speakers-block { margin-top: 56px; padding-top: 44px; } }
+        @media (max-width: 700px) { .speakers-grid { grid-template-columns: 1fr; } .speakers-group + .speakers-group { margin-top: 56px; } }
         @media (prefers-reduced-motion: reduce) { .speaker-card { transition: none; } .speaker-card:hover { transform: none; } }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1179,6 +1197,7 @@
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="#home">Home</a>
                 <a href="#events">Events</a>
+                <a href="#speaker-wall">Speaker Wall</a>
                 <a href="#about">About</a>
                 <a href="#team">Team</a>
                 <a href="#get-involved">Get Involved</a>
@@ -1230,50 +1249,88 @@
                     <p>Talks, workshops, and hands-on sessions for the Dallas cybersecurity community. Grab a seat and show up with purpose.</p>
                 </div>
 
-                <div class="events-layout">
-                    <div class="events-info">
-                        <span class="events-eyebrow"><span class="live-dot" aria-hidden="true"></span>Next meetup</span>
-                        <h3>Learn, build, and connect in person.</h3>
-                        <p>
-                            Every null Dallas session is built around real technical conversation: practical demos,
-                            community talks, and people who care more about knowledge than titles.
-                            Register in the panel, or jump into Discord to see what's coming next.
-                        </p>
+                <div class="events-empty">
+                    <span class="events-eyebrow"><span class="live-dot" aria-hidden="true"></span>Next meetup</span>
+                    <h3>The next event is being planned.</h3>
+                    <p>
+                        Every null Dallas session is built around real technical conversation: practical demos,
+                        community talks, and people who care more about knowledge than titles.
+                        Join our Discord to hear first when the next one drops.
+                    </p>
 
-                        <ul class="events-points">
-                            <li>Open to all skill levels</li>
-                            <li>Students and industry practitioners welcome</li>
-                            <li>Want to speak? Send us your talk</li>
-                        </ul>
+                    <ul class="events-points">
+                        <li>Open to all skill levels</li>
+                        <li>Students and industry practitioners welcome</li>
+                        <li>Want to speak? Send us your talk</li>
+                    </ul>
 
-                        <div class="cta-row">
-                            <a class="btn btn-primary" href="https://discord.gg/ARbJM4Usbz" target="_blank" rel="noreferrer">Join our Discord</a>
-                            <a class="btn btn-secondary" href="https://sessionize.com/null-dallas9421/" target="_blank" rel="noreferrer">Submit a Talk</a>
-                        </div>
-                    </div>
-
-                    <div class="event-embed">
-                        <div class="event-embed-bar">
-                            <span class="embed-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                            <span class="embed-title">~/null-dallas/next-event</span>
-                            <span class="embed-status"><span class="live-dot" aria-hidden="true"></span>live</span>
-                        </div>
-                        <div class="event-embed-body">
-                            <p class="embed-loading">Loading event details&hellip;</p>
-                            <iframe
-                                class="event-iframe"
-                                src="https://luma.com/embed/event/evt-ZaWjwhJJ9Pn9knu/simple"
-                                title="null Dallas upcoming event registration"
-                                loading="lazy"
-                                allow="fullscreen; payment"
-                            ></iframe>
-                        </div>
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="https://discord.gg/ARbJM4Usbz" target="_blank" rel="noreferrer">Join our Discord</a>
+                        <a class="btn btn-secondary" href="https://sessionize.com/null-dallas9421/" target="_blank" rel="noreferrer">Submit a Talk</a>
                     </div>
                 </div>
 
-                <div class="speakers-block" id="speakers">
+                <div class="past-events" id="past-events">
+                    <div class="section-head">
+                        <h2>Past Events</h2>
+                        <p>A look back at what the community has built together.</p>
+                    </div>
+
+                    <div class="events-layout">
+                        <div class="events-info">
+                            <span class="events-eyebrow is-past">Kickoff</span>
+                            <h3>null Dallas Kickoff Event</h3>
+                            <div class="past-meta">
+                                <span>Oct 22, 2026</span>
+                                <span>7pm CT</span>
+                                <span>JSOM Davidson Auditorium</span>
+                            </div>
+                            <p>
+                                The in-person kickoff of the null Dallas chapter, with two talks from industry practitioners.
+                            </p>
+
+                            <ul class="past-talks">
+                                <li><strong>Sai Molige</strong>: The Sandbox wasn't the Boundary</li>
+                                <li><strong>Michelle Foley</strong>: Hacking Corporate Politics: Survival in the Trenches</li>
+                            </ul>
+
+                            <div class="cta-row">
+                                <a class="btn btn-primary" href="#speaker-wall">Meet the speakers</a>
+                            </div>
+                        </div>
+
+                        <div class="event-embed">
+                            <div class="event-embed-bar">
+                                <span class="embed-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="embed-title">~/null-dallas/past-events/kickoff</span>
+                                <span class="embed-status is-past">ended</span>
+                            </div>
+                            <div class="event-embed-body">
+                                <p class="embed-loading">Loading event details&hellip;</p>
+                                <iframe
+                                    class="event-iframe"
+                                    src="https://luma.com/embed/event/evt-ZaWjwhJJ9Pn9knu/simple"
+                                    title="null Dallas kickoff event"
+                                    loading="lazy"
+                                    allow="fullscreen; payment"
+                                ></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="speaker-wall">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Speaker Wall</h2>
+                    <p>The people who have taken the stage at null Dallas.</p>
+                </div>
+
+                <div class="speakers-group">
                     <div class="speakers-head">
-                        <h3>Kickoff Event Speakers</h3>
+                        <h3>Kickoff Event</h3>
                         <div class="speakers-meta">
                             <span>Oct 22, 2026</span>
                             <span>7pm CT</span>

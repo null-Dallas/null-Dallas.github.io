@@ -1183,6 +1183,33 @@
         @media (max-width: 700px) { .speakers-grid { grid-template-columns: 1fr; } .speakers-group + .speakers-group { margin-top: 56px; } }
         @media (prefers-reduced-motion: reduce) { .speaker-card { transition: none; } .speaker-card:hover { transform: none; } }
 
+
+        /* Kickoff gallery */
+        .event-gallery { margin-top: 56px; }
+        .gallery-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; margin-bottom: 22px; }
+        .gallery-head h3 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); letter-spacing: -0.03em; }
+        .gallery-head span { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
+        .gallery-grid { columns: 3; column-gap: 16px; }
+        .gallery-item { position: relative; display: block; width: 100%; margin: 0 0 16px; padding: 0; break-inside: avoid; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--bg-soft); cursor: pointer; color: inherit; font: inherit; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+        .gallery-item::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); z-index: 2; }
+        .gallery-item:hover, .gallery-item:focus-visible { transform: translateY(-3px); border-color: rgba(210, 255, 2, 0.4); box-shadow: 0 18px 44px var(--shadow), 0 0 32px rgba(210, 255, 2, 0.1); outline: none; }
+        .gallery-item img { display: block; width: 100%; height: auto; }
+        .gallery-item .play-badge { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.28); }
+        .gallery-item .play-badge i { width: 58px; height: 58px; border-radius: 50%; background: var(--primary); display: grid; place-items: center; box-shadow: 0 0 30px rgba(210, 255, 2, 0.35); }
+        .gallery-item .play-badge i::after { content: ""; margin-left: 4px; border-left: 16px solid #000; border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
+        .gallery-lightbox { width: min(94vw, 1100px); max-height: 94vh; padding: 0; border: 1px solid rgba(210, 255, 2, 0.35); border-radius: 18px; background: var(--bg); color: var(--text); overflow: hidden; }
+        .gallery-lightbox::backdrop { background: rgba(0, 0, 0, 0.88); }
+        .gallery-lightbox .lb-stage { display: grid; place-items: center; max-height: 94vh; }
+        .gallery-lightbox img, .gallery-lightbox video { display: block; max-width: 100%; max-height: 94vh; width: auto; height: auto; }
+        .gallery-lightbox button { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(210, 255, 2, 0.4); border-radius: 50%; background: rgba(0, 0, 0, 0.7); color: var(--primary); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+        .gallery-lightbox button:hover, .gallery-lightbox button:focus-visible { background: var(--primary); color: #000; outline: none; }
+        .lb-close { top: 12px; right: 12px; }
+        .lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+        .lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+        @media (max-width: 900px) { .gallery-grid { columns: 2; } }
+        @media (max-width: 520px) { .gallery-grid { columns: 1; } .event-gallery { margin-top: 40px; } }
+        @media (prefers-reduced-motion: reduce) { .gallery-item { transition: none; } .gallery-item:hover { transform: none; } }
+
         @media (prefers-reduced-motion: reduce) {
             .live-dot { animation: none; }
         }
@@ -1324,6 +1351,42 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="event-gallery" id="kickoff-gallery">
+                        <div class="gallery-head">
+                            <h3>Kickoff Gallery</h3>
+                            <span>4 photos &middot; 2 clips</span>
+                        </div>
+                        <div class="gallery-grid">
+                            <button type="button" class="gallery-item" data-type="image" data-src="./gallery/kickoff/kickoff-group.jpg" aria-label="Open photo: Group photo of the null Dallas kickoff attendees and speakers on stage at JSOM">
+                                <img src="./gallery/kickoff/kickoff-group.jpg" alt="Group photo of the null Dallas kickoff attendees and speakers on stage at JSOM" loading="lazy" />
+                            </button>
+                            <button type="button" class="gallery-item" data-type="video" data-src="./gallery/kickoff/kickoff-clip-1.mp4" data-poster="./gallery/kickoff/kickoff-clip-1-poster.jpg" aria-label="Play video: Video clip from a kickoff talk at null Dallas">
+                                <img src="./gallery/kickoff/kickoff-clip-1-poster.jpg" alt="Video clip from a kickoff talk at null Dallas" loading="lazy" />
+                                <span class="play-badge" aria-hidden="true"><i></i></span>
+                            </button>
+                            <button type="button" class="gallery-item" data-type="image" data-src="./gallery/kickoff/kickoff-talk-stage-1.jpg" aria-label="Open photo: Speaker presenting on stage at the null Dallas kickoff event">
+                                <img src="./gallery/kickoff/kickoff-talk-stage-1.jpg" alt="Speaker presenting on stage at the null Dallas kickoff event" loading="lazy" />
+                            </button>
+                            <button type="button" class="gallery-item" data-type="image" data-src="./gallery/kickoff/kickoff-talk-podium.jpg" aria-label="Open photo: Speaker presenting at the podium during the null Dallas kickoff">
+                                <img src="./gallery/kickoff/kickoff-talk-podium.jpg" alt="Speaker presenting at the podium during the null Dallas kickoff" loading="lazy" />
+                            </button>
+                            <button type="button" class="gallery-item" data-type="image" data-src="./gallery/kickoff/kickoff-talk-stage-2.jpg" aria-label="Open photo: Speaker with a microphone on stage at the null Dallas kickoff event">
+                                <img src="./gallery/kickoff/kickoff-talk-stage-2.jpg" alt="Speaker with a microphone on stage at the null Dallas kickoff event" loading="lazy" />
+                            </button>
+                            <button type="button" class="gallery-item" data-type="video" data-src="./gallery/kickoff/kickoff-clip-2.mp4" data-poster="./gallery/kickoff/kickoff-clip-2-poster.jpg" aria-label="Play video: Second video clip from the null Dallas kickoff event">
+                                <img src="./gallery/kickoff/kickoff-clip-2-poster.jpg" alt="Second video clip from the null Dallas kickoff event" loading="lazy" />
+                                <span class="play-badge" aria-hidden="true"><i></i></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <dialog class="gallery-lightbox" id="gallery-lightbox" aria-label="Kickoff gallery viewer">
+                        <div class="lb-stage"></div>
+                        <button type="button" class="lb-close" aria-label="Close">&times;</button>
+                        <button type="button" class="lb-prev" aria-label="Previous">&#8249;</button>
+                        <button type="button" class="lb-next" aria-label="Next">&#8250;</button>
+                    </dialog>
                 </div>
             </div>
         </section>
@@ -1580,5 +1643,42 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    (function () {
+        var dlg = document.getElementById("gallery-lightbox");
+        if (!dlg) return;
+        var stage = dlg.querySelector(".lb-stage");
+        var items = Array.prototype.slice.call(document.querySelectorAll("#kickoff-gallery .gallery-item"));
+        var current = 0;
+        function show(i) {
+            current = (i + items.length) % items.length;
+            var it = items[current];
+            stage.innerHTML = "";
+            var el;
+            if (it.dataset.type === "video") {
+                el = document.createElement("video");
+                el.controls = true; el.autoplay = true; el.playsInline = true;
+                el.poster = it.dataset.poster; el.src = it.dataset.src;
+            } else {
+                el = document.createElement("img");
+                el.src = it.dataset.src; el.alt = it.querySelector("img").alt;
+            }
+            stage.appendChild(el);
+        }
+        items.forEach(function (it, i) {
+            it.addEventListener("click", function () { show(i); dlg.showModal(); });
+        });
+        dlg.querySelector(".lb-close").addEventListener("click", function () { dlg.close(); });
+        dlg.querySelector(".lb-prev").addEventListener("click", function () { show(current - 1); });
+        dlg.querySelector(".lb-next").addEventListener("click", function () { show(current + 1); });
+        dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+        dlg.addEventListener("close", function () { stage.innerHTML = ""; });
+        dlg.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowLeft") show(current - 1);
+            if (e.key === "ArrowRight") show(current + 1);
+        });
+    })();
+    </script>
 </body>
 </html>

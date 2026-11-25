@@ -1170,10 +1170,6 @@
         @media (max-width: 640px) { .events-empty { padding: 26px 20px; } .past-events { margin-top: 56px; padding-top: 44px; } }
 
         .upcoming-layout { align-items: center; }
-        .event-poster { display: block; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px var(--shadow); transition: transform 0.25s ease, border-color 0.25s ease; }
-        .event-poster:hover { transform: translateY(-4px); border-color: rgba(210, 255, 2, 0.4); }
-        .event-poster img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-        @media (prefers-reduced-motion: reduce) { .event-poster { transition: none; } .event-poster:hover { transform: none; } }
 
         /* ---- Speaker wall ---- */
         .speakers-group + .speakers-group { margin-top: 72px; }
@@ -1303,19 +1299,30 @@
                             <ul class="events-points">
                                 <li>Free &amp; open to all skill levels</li>
                                 <li>Students and industry practitioners welcome</li>
-                                <li>Want to speak? Send us your talk</li>
                             </ul>
 
                             <div class="cta-row">
                                 <a class="btn btn-primary" href="https://luma.com/3hbihs5n?tk=JHYBBN" target="_blank" rel="noreferrer">Register on Luma</a>
-                                <a class="btn btn-secondary" href="https://discord.gg/ARbJM4Usbz" target="_blank" rel="noreferrer">Join our Discord</a>
-                                <a class="btn btn-secondary" href="https://sessionize.com/null-dallas9421/" target="_blank" rel="noreferrer">Submit a Talk</a>
                             </div>
                         </div>
 
-                        <a class="event-poster" href="https://luma.com/3hbihs5n?tk=JHYBBN" target="_blank" rel="noreferrer" aria-label="Register for null Dallas event 2 on Luma">
-                            <img src="./events/event2-poster.jpeg" alt="null Dallas event 2 poster: Purple Teaming, Breaking and Hardening. Saturday, December 5, 9 to 11 AM CT, virtual. Free, RSVP required." loading="lazy" />
-                        </a>
+                        <div class="event-embed">
+                            <div class="event-embed-bar">
+                                <span class="embed-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="embed-title">~/null-dallas/events/purple-teaming</span>
+                                <span class="embed-status">live</span>
+                            </div>
+                            <div class="event-embed-body">
+                                <p class="embed-loading">Loading event details&hellip;</p>
+                                <iframe
+                                    class="event-iframe"
+                                    src="https://luma.com/embed/event/evt-uXqmDKxbTg1lTgR/simple"
+                                    title="null Dallas Purple Teaming event"
+                                    loading="lazy"
+                                    allow="fullscreen; payment"
+                                ></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
